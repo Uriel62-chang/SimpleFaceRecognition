@@ -310,7 +310,7 @@ cv::add(processed, mean_val * (1.0 - contrast_factor), processed);
 
 1. **克隆项目**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/Uriel62-chang/SimpleFaceRecognition.git
    cd face_recognition_project
    ```
 
