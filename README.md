@@ -363,6 +363,7 @@ cv::add(processed, mean_val * (1.0 - contrast_factor), processed);
 
 ## 🔮 未来计划
 
+- [ ] 引入深度学习模型
 - [ ] 支持更多图像格式
 - [ ] 添加人脸质量评估
 - [ ] 实现多摄像头支持
