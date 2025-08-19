@@ -17,6 +17,8 @@ just based on pure OpenCV……
 - **无深度学习依赖**: 纯传统计算机视觉实现，无需GPU
 - **模块化设计**: 清晰的类结构，易于维护和扩展
 - **跨平台支持**: 支持Windows、Linux、macOS
+- **一键构建**: 提供PowerShell和Bash两种构建脚本，支持不同操作系统
+- **智能路径处理**: 使用相对路径和跨平台文件系统API，确保项目可移植性
 
 ## 🏗️ 项目结构
 
@@ -41,7 +43,8 @@ face_recognition_project/
 ├── pictures/                  # 注册照片目录
 ├── build/                     # 构建输出目录
 ├── CMakeLists.txt            # CMake构建配置
-├── build.ps1                 # PowerShell构建脚本
+├── build.ps1                 # PowerShell构建脚本 (Windows)
+├── build.sh                  # Bash构建脚本 (Linux/macOS)
 └── README.md                 # 项目说明文档
 ```
 
@@ -301,21 +304,30 @@ cv::add(processed, mean_val * (1.0 - contrast_factor), processed);
 ## 🚀 快速开始
 
 ### 环境要求
+
+#### Windows 用户
 - Windows 10/11
-- Visual Studio 2019/2022
+- Visual Studio 2019/2022 或 Visual Studio Build Tools
+- OpenCV 4.10.0+
+- CMake 3.20+
+
+#### Linux/macOS 用户
+- Ubuntu 18.04+, CentOS 7+, macOS 10.14+
+- GCC 7+ 或 Clang 6+
 - OpenCV 4.10.0+
 - CMake 3.20+
 
 ### 构建步骤
 
+#### Windows 用户
 1. **克隆项目**
    ```bash
    git clone https://github.com/Uriel62-chang/SimpleFaceRecognition.git
    cd face_recognition_project
    ```
 
-2. **运行构建脚本**
-   ```bash
+2. **运行PowerShell构建脚本**
+   ```powershell
    .\build.ps1
    ```
 
@@ -324,6 +336,34 @@ cv::add(processed, mean_val * (1.0 - contrast_factor), processed);
    cd build\bin\Release
    .\face_recognition.exe
    ```
+
+#### Linux/macOS 用户
+1. **克隆项目**
+   ```bash
+   git clone https://github.com/Uriel62-chang/SimpleFaceRecognition.git
+   cd face_recognition_project
+   ```
+
+2. **运行Bash构建脚本**
+   ```bash
+   ./build.sh
+   ```
+
+3. **运行程序**
+   ```bash
+   cd build/bin
+   ./face_recognition
+   ```
+
+### 一键构建特性
+
+两个构建脚本都包含以下自动化功能：
+- ✅ **自动创建build目录** - 无需手动创建
+- ✅ **智能依赖检查** - 自动检测CMake和OpenCV
+- ✅ **跨平台路径处理** - 自动处理不同操作系统的路径差异
+- ✅ **资源文件复制** - 自动复制models和pictures目录到输出位置
+- ✅ **构建状态反馈** - 实时显示构建进度和结果
+- ✅ **错误处理** - 详细的错误信息和解决建议
 
 ### 使用说明
 
@@ -381,6 +421,10 @@ cv::add(processed, mean_val * (1.0 - contrast_factor), processed);
 - ✨ 调整对比度增强参数
 - ✨ 重构为模块化架构
 - ✨ 实现自动照片注册功能
+- ✨ **路径迁移优化** - 将所有绝对路径改为相对路径，提高项目可移植性
+- ✨ **跨平台构建脚本** - 新增Linux/macOS的bash构建脚本
+- ✨ **智能路径处理** - 使用std::filesystem实现跨平台路径兼容
+- ✨ **自动资源复制** - CMake自动复制模型和图片文件到输出目录
 
 ### v1.0.0
 - 🎉 初始版本发布
