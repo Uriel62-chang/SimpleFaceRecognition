@@ -87,7 +87,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>E:\PersonalProjects\face_recognition_project\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /external:I "E:/Users/a6625/Downloads/opencv/build/include"</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "E:/Users/a6625/Downloads/opencv/build/include" /utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -116,6 +116,27 @@
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
+    <PostBuildEvent>
+      <Message>Copying models directory to output	Copying pictures directory to output</Message>
+      <Command>setlocal
+E:\vcpkg\downloads\tools\cmake-3.29.2-windows\cmake-3.29.2-windows-i386\bin\cmake.exe -E copy_directory E:/PersonalProjects/face_recognition_project/models E:/PersonalProjects/face_recognition_project/build/bin/models
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+E:\vcpkg\downloads\tools\cmake-3.29.2-windows\cmake-3.29.2-windows-i386\bin\cmake.exe -E copy_directory E:/PersonalProjects/face_recognition_project/pictures E:/PersonalProjects/face_recognition_project/build/bin/pictures
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100d.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -133,7 +154,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>E:\PersonalProjects\face_recognition_project\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /external:I "E:/Users/a6625/Downloads/opencv/build/include"</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "E:/Users/a6625/Downloads/opencv/build/include" /utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
@@ -162,6 +183,27 @@
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
+    <PostBuildEvent>
+      <Message>Copying models directory to output	Copying pictures directory to output</Message>
+      <Command>setlocal
+E:\vcpkg\downloads\tools\cmake-3.29.2-windows\cmake-3.29.2-windows-i386\bin\cmake.exe -E copy_directory E:/PersonalProjects/face_recognition_project/models E:/PersonalProjects/face_recognition_project/build/bin/models
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+E:\vcpkg\downloads\tools\cmake-3.29.2-windows\cmake-3.29.2-windows-i386\bin\cmake.exe -E copy_directory E:/PersonalProjects/face_recognition_project/pictures E:/PersonalProjects/face_recognition_project/build/bin/pictures
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -179,7 +221,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>E:\PersonalProjects\face_recognition_project\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /external:I "E:/Users/a6625/Downloads/opencv/build/include"</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "E:/Users/a6625/Downloads/opencv/build/include" /utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <ExceptionHandling>Sync</ExceptionHandling>
       <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
@@ -208,6 +250,27 @@
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
+    <PostBuildEvent>
+      <Message>Copying models directory to output	Copying pictures directory to output</Message>
+      <Command>setlocal
+E:\vcpkg\downloads\tools\cmake-3.29.2-windows\cmake-3.29.2-windows-i386\bin\cmake.exe -E copy_directory E:/PersonalProjects/face_recognition_project/models E:/PersonalProjects/face_recognition_project/build/bin/models
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+E:\vcpkg\downloads\tools\cmake-3.29.2-windows\cmake-3.29.2-windows-i386\bin\cmake.exe -E copy_directory E:/PersonalProjects/face_recognition_project/pictures E:/PersonalProjects/face_recognition_project/build/bin/pictures
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
@@ -225,7 +288,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
       <AdditionalIncludeDirectories>E:\PersonalProjects\face_recognition_project\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <AdditionalOptions>%(AdditionalOptions) /external:I "E:/Users/a6625/Downloads/opencv/build/include"</AdditionalOptions>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "E:/Users/a6625/Downloads/opencv/build/include" /utf-8</AdditionalOptions>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -253,6 +316,27 @@
       <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
+    <PostBuildEvent>
+      <Message>Copying models directory to output	Copying pictures directory to output</Message>
+      <Command>setlocal
+E:\vcpkg\downloads\tools\cmake-3.29.2-windows\cmake-3.29.2-windows-i386\bin\cmake.exe -E copy_directory E:/PersonalProjects/face_recognition_project/models E:/PersonalProjects/face_recognition_project/build/bin/models
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+setlocal
+E:\vcpkg\downloads\tools\cmake-3.29.2-windows\cmake-3.29.2-windows-i386\bin\cmake.exe -E copy_directory E:/PersonalProjects/face_recognition_project/pictures E:/PersonalProjects/face_recognition_project/build/bin/pictures
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PostBuildEvent>
     <Link>
       <AdditionalDependencies>E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;E:\Users\a6625\Downloads\opencv\build\x64\vc16\lib\opencv_world4100.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>

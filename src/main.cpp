@@ -5,6 +5,7 @@
 #include "face_manager.h"
 #include "recognition_engine.h"
 #include "face_recognition.h"  // 添加这个来获取load_model函数
+#include "utils.h"  // 添加utils头文件
 
 using namespace cv;
 using namespace std;
@@ -20,9 +21,10 @@ int main()
     }
     cout << "✓ 模型加载成功！" << endl;
 
-    // 2) 初始化人脸管理器
+    // 2) 初始化人脸管理器 - 使用相对路径
     FaceManager faceManager;
-    if (!faceManager.initialize("E:/PersonalProjects/face_recognition_project/pictures")) {
+    std::string picturesDir = ::utils::getPicturesDirectory();
+    if (!faceManager.initialize(picturesDir)) {
         cerr << "错误：无法初始化人脸管理器" << endl;
         return -1;
     }

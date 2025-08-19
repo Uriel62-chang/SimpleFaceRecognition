@@ -23,31 +23,64 @@ std::string getProjectRoot() {
 
 std::string getModelPath(const std::string& modelName) {
     std::string projectRoot = getProjectRoot();
-    std::string modelPath = projectRoot + "models\\" + modelName;
+    
+    // 使用filesystem::path进行跨平台路径拼接
+    fs::path modelPath = fs::path(projectRoot) / "models" / modelName;
     
     // 检查文件是否存在
-    if (fileExists(modelPath)) {
-        return modelPath;
+    if (fileExists(modelPath.string())) {
+        return modelPath.string();
     }
     
     // 如果不存在，尝试其他可能的路径
-    std::vector<std::string> possiblePaths = {
-        projectRoot + "models\\" + modelName,
-        projectRoot + "..\\models\\" + modelName,
-        projectRoot + "..\\..\\models\\" + modelName,
-        "models\\" + modelName,
-        "..\\models\\" + modelName
+    std::vector<fs::path> possiblePaths = {
+        fs::path(projectRoot) / "models" / modelName,
+        fs::path(projectRoot) / ".." / "models" / modelName,
+        fs::path(projectRoot) / ".." / ".." / "models" / modelName,
+        fs::path("models") / modelName,
+        fs::path("..") / "models" / modelName
     };
     
     for (const auto& path : possiblePaths) {
-        if (fileExists(path)) {
-            return path;
+        if (fileExists(path.string())) {
+            return path.string();
         }
     }
     
     // 如果都找不到，返回原始路径
     std::cerr << "[Utils] Warning: Model file not found: " << modelName << std::endl;
-    return modelPath;
+    return modelPath.string();
+}
+
+std::string getPicturesDirectory() {
+    std::string projectRoot = getProjectRoot();
+    
+    // 使用filesystem::path进行跨平台路径拼接
+    fs::path picturesPath = fs::path(projectRoot) / "pictures";
+    
+    // 检查目录是否存在
+    if (fs::exists(picturesPath) && fs::is_directory(picturesPath)) {
+        return picturesPath.string();
+    }
+    
+    // 如果不存在，尝试其他可能的路径
+    std::vector<fs::path> possiblePaths = {
+        fs::path(projectRoot) / "pictures",
+        fs::path(projectRoot) / ".." / "pictures",
+        fs::path(projectRoot) / ".." / ".." / "pictures",
+        fs::path("pictures"),
+        fs::path("..") / "pictures"
+    };
+    
+    for (const auto& path : possiblePaths) {
+        if (fs::exists(path) && fs::is_directory(path)) {
+            return path.string();
+        }
+    }
+    
+    // 如果都找不到，返回默认路径
+    std::cerr << "[Utils] Warning: Pictures directory not found, using default path" << std::endl;
+    return picturesPath.string();
 }
 
 bool fileExists(const std::string& filePath) {
