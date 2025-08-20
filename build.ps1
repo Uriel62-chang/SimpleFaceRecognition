@@ -71,4 +71,4 @@ if (Test-Path $exePath) {
 Set-Location ".."
 
 Write-Host "=== 构建完成 ===" -ForegroundColor Green
-Write-Host "提示: 运行 'cd build\bin && .\face_recognition.exe' 来测试程序" -ForegroundColor Cyan
+Write-Host "提示: 运行 'cd build\bin\Release && .\face_recognition.exe' 来测试程序" -ForegroundColor Cyan
