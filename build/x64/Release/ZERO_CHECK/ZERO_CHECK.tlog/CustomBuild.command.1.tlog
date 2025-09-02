@@ -1,0 +1,10 @@
+^E:\PERSONALPROJECTS\FACE_RECOGNITION_PROJECT\BUILD\CMAKEFILES\D362E0A737EAA17C878122AD3FA0EF91\GENERATE.STAMP.RULE
+setlocal
+E:\vcpkg\downloads\tools\cmake-3.29.2-windows\cmake-3.29.2-windows-i386\bin\cmake.exe -SE:/PersonalProjects/face_recognition_project -BE:/PersonalProjects/face_recognition_project/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file E:/PersonalProjects/face_recognition_project/build/face_recognition_opencv_project.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

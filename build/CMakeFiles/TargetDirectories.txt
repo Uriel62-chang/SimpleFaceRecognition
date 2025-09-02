@@ -1,0 +1,3 @@
+E:/PersonalProjects/face_recognition_project/build/CMakeFiles/face_recognition.dir
+E:/PersonalProjects/face_recognition_project/build/CMakeFiles/ALL_BUILD.dir
+E:/PersonalProjects/face_recognition_project/build/CMakeFiles/ZERO_CHECK.dir
