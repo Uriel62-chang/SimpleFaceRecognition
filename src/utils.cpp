@@ -9,16 +9,48 @@ namespace fs = std::filesystem;
 namespace utils {
 
 std::string getProjectRoot() {
-    // 获取当前可执行文件所在目录
-    std::string exePath = fs::current_path().string();
+    // 获取当前工作目录
+    fs::path currentPath = fs::current_path();
     
     // 如果在 build 目录下，向上查找项目根目录
-    if (exePath.find("build") != std::string::npos) {
-        size_t buildPos = exePath.find("build");
-        return exePath.substr(0, buildPos);
+    fs::path searchPath = currentPath;
+    std::string searchPathStr = searchPath.string();
+    
+    if (searchPathStr.find("build") != std::string::npos) {
+        // 找到包含 "build" 的路径，向上查找项目根目录
+        while (searchPath.has_parent_path() && searchPath.string().find("build") != std::string::npos) {
+            searchPath = searchPath.parent_path();
+        }
+        // 如果仍在build目录中，再向上查找一级
+        if (searchPath.filename().string() == "build" || searchPath.string().find("build") != std::string::npos) {
+            searchPath = searchPath.parent_path();
+        }
     }
     
-    return exePath;
+    // 验证是否为项目根目录：检查是否存在 models 和 pictures 目录
+    fs::path modelsDir = searchPath / "models";
+    fs::path picturesDir = searchPath / "pictures";
+    
+    if (fs::exists(modelsDir) && fs::is_directory(modelsDir) &&
+        fs::exists(picturesDir) && fs::is_directory(picturesDir)) {
+        return searchPath.string();
+    }
+    
+    // 如果当前路径不是项目根目录，向上查找
+    fs::path parentPath = searchPath;
+    for (int i = 0; i < 5 && parentPath.has_parent_path(); ++i) {
+        parentPath = parentPath.parent_path();
+        modelsDir = parentPath / "models";
+        picturesDir = parentPath / "pictures";
+        
+        if (fs::exists(modelsDir) && fs::is_directory(modelsDir) &&
+            fs::exists(picturesDir) && fs::is_directory(picturesDir)) {
+            return parentPath.string();
+        }
+    }
+    
+    // 如果都找不到，返回当前路径（向后兼容）
+    return currentPath.string();
 }
 
 std::string getModelPath(const std::string& modelName) {

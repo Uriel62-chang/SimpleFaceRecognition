@@ -5,10 +5,8 @@ project(face_recognition_opencv_project)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# 设置跨平台路径处理
-if(WIN32)
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /utf-8")
-endif()
+# 设置编译器选项（Linux）
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra")
 
 # 查找 OpenCV
 find_package(OpenCV REQUIRED)
@@ -55,21 +53,6 @@ endif()
 # 设置输出目录
 set_target_properties(face_recognition PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
-)
-
-# 复制必要的资源文件到输出目录
-add_custom_command(TARGET face_recognition POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/models
-    ${CMAKE_BINARY_DIR}/bin/models
-    COMMENT "Copying models directory to output"
-)
-
-add_custom_command(TARGET face_recognition POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_directory
-    ${CMAKE_SOURCE_DIR}/pictures
-    ${CMAKE_BINARY_DIR}/bin/pictures
-    COMMENT "Copying pictures directory to output"
 )
 
 
